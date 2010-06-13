@@ -137,11 +137,19 @@ function windowTitle()
 
 <dt><a href="firep4j/FireP4j.html#addObjectFilter(String, String)" title="Method in FireP4j"><b>addObjectFilter</b>(String, String)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This method adds an object filter to the list of object filters. </dd>
+<dt><a href="firep4j/tools/JSONUtils.html#addObjectFilter(String, String)" title="Method in JSONUtils"><b>addObjectFilter</b>(String, String)</b></a> - Method in <a href="firep4j/tools/JSONUtils.html">JSONUtils</a>
+</dt><dd> This method sets an object filter.
+ 
+ </dd>
+<dt><a href="firep4j/tools/JSONUtils.html#addPathFilter(String)" title="Method in JSONUtils"><b>addPathFilter</b>(String)</b></a> - Method in <a href="firep4j/tools/JSONUtils.html">JSONUtils</a>
+</dt><dd> This method prevents the specified path from being serialized.
+ 
+ </dd>
 <dt><a href="firep4j/Table.html#addRow(Serializable)" title="Method in Table"><b>addRow</b>(Serializable)</b></a> - Method in <a href="firep4j/Table.html">Table</a>
 </dt><dd> This method adds a new row to the table (consisting of the values given).
  
  </dd>
-<dt><a href="firep4j/FireP4j.html#addTraceFilter(Filter)" title="Method in FireP4j"><b>addTraceFilter</b>(Filter)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
+<dt><a href="firep4j/FireP4j.html#addTraceFilter(firep4j.tools.Filter)" title="Method in FireP4j"><b>addTraceFilter</b>(Filter)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This method adds a trace filter to the list of existing trace filters.
  
  </dd>
@@ -202,6 +210,12 @@ function windowTitle()
 <dt><a href="firep4j/Table.html#columns" title="Property in Table"><b>columns</b></a> - Property in <a href="firep4j/Table.html">Table</a>
 </dt><dd> Number of columns the table contains
 	 </dd>
+<dt><a href="firep4j/tools/Versioner.html#compareVersions(String, String)" title="Method in Versioner"><b>compareVersions</b>(String, String)</b></a> - Method in <a href="firep4j/tools/Versioner.html">Versioner</a>
+</dt><dd> This method compares to version strings.
+ </dd>
+<dt><a href="firep4j/tools/Filter.Criteria.html#CONTAINS" title="Enum Constant in Filter.Criteria"><b>CONTAINS</b></a> - Enum Constant in <a href="firep4j/tools/Filter.Criteria.html">Filter.Criteria</a>
+</dt><dd> A filter where the expression contains the given value
+		 </dd>
 <dt><a href="firep4j/FireP4j.html#correctVersion" title="Property in FireP4j"><b>correctVersion</b></a> - Property in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> Flag indicating whether the FirePHP logger can be used
 	 </dd>
@@ -241,6 +255,12 @@ function windowTitle()
 <dt><a href="firep4j/FireP4j.html#enabled" title="Property in FireP4j"><b>enabled</b></a> - Property in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> Flag indicating whether the output is enabled 
 	 </dd>
+<dt><a href="firep4j/tools/Filter.Criteria.html#ENDS_WITH" title="Enum Constant in Filter.Criteria"><b>ENDS_WITH</b></a> - Enum Constant in <a href="firep4j/tools/Filter.Criteria.html">Filter.Criteria</a>
+</dt><dd> A filter where the expression ends with the given value
+		 </dd>
+<dt><a href="firep4j/tools/Filter.Criteria.html#EQUALS" title="Enum Constant in Filter.Criteria"><b>EQUALS</b></a> - Enum Constant in <a href="firep4j/tools/Filter.Criteria.html">Filter.Criteria</a>
+</dt><dd> A filter where the expression equals the given value
+		 </dd>
 <dt><a href="firep4j/FireP4j.html#error(Serializable, String)" title="Method in FireP4j"><b>error</b>(Serializable, String)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This method outputs the given object with the given label to the FireBug console with log level ERROR.
  
@@ -267,6 +287,15 @@ function windowTitle()
 
 <dl>
 
+<dt><a href="firep4j/tools/Filter.html" title="Class in firep4j.tools"><b>Filter</b></a> - Class in <a href="./firep4j/tools/package-summary.html">firep4j.tools</a>
+</dt><dd> This class represents a simple filter that contains different containment filter types.
+ 
+ </dd>
+<dt><a href="firep4j/tools/Filter.Criteria.html" title="Enum in firep4j.tools.Filter"><b>Filter.Criteria</b></a> - Enum in <a href="./firep4j/tools/package-summary.html">firep4j.tools</a>
+</dt><dd> All possible filter criteria
+	 </dd>
+<dt><a href="firep4j/tools/Filter.html#Filter()" title="Constructor in Filter"><b>Filter</b>()</b></a> - Constructor in <a href="firep4j/tools/Filter.html">Filter</a>
+</dt><dd></dd>
 <dt><a href="firep4j/FireP4j.html#fireBug(Serializable, String, FireP4jLogLevel)" title="Method in FireP4j"><b>fireBug</b>(Serializable, String, FireP4jLogLevel)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This is the main method in FireP4j. </dd>
 <dt><a href="firep4j/FireP4j.html" title="Class in firep4j"><b>FireP4j</b></a> - Class in <a href="./firep4j/package-summary.html">firep4j</a>
@@ -290,6 +319,12 @@ function windowTitle()
 </dt><dd> Dummy constructor setting the FireP4j instance
  
  
+	 </dd>
+<dt><a href="firep4j/profile/FireP4jProfile.html" title="Class in firep4j.profile"><b>FireP4jProfile</b></a> - Class in <a href="./firep4j/profile/package-summary.html">firep4j.profile</a>
+</dt><dd> This class is the base class for language specific FireP4j profiles.
+ </dd>
+<dt><a href="firep4j/profile/FireP4jProfile.html#FireP4jProfile()" title="Constructor in FireP4jProfile"><b>FireP4jProfile</b>()</b></a> - Constructor in <a href="firep4j/profile/FireP4jProfile.html">FireP4jProfile</a>
+</dt><dd> Dummy constructor
 	 </dd>
 </dl>
 
@@ -324,10 +359,24 @@ function windowTitle()
 <dt><a href="firep4j/FireP4j.html#getInstanceCount()" title="Method in FireP4j"><b>getInstanceCount</b>()</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This method returns the instance number of the current FireP4j object.
  </dd>
+<dt><a href="firep4j/profile/FireP4jProfile.html#getPathFilters()" title="Method in FireP4jProfile"><b>getPathFilters</b>()</b></a> - Method in <a href="firep4j/profile/FireP4jProfile.html">FireP4jProfile</a>
+</dt><dd> This method returns all path filters (not showing some object elements in the output).
+ 
+ </dd>
 <dt><a href="firep4j/FireP4j.html#getTrace(String, Object, FireP4jLogLevel)" title="Method in FireP4j"><b>getTrace</b>(String, Object, FireP4jLogLevel)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This method renders the output for exception and trace log levels.
  
  </dd>
+<dt><a href="firep4j/profile/FireP4jProfile.html#getTraceFilters()" title="Method in FireP4jProfile"><b>getTraceFilters</b>()</b></a> - Method in <a href="firep4j/profile/FireP4jProfile.html">FireP4jProfile</a>
+</dt><dd> This method returns all trace filters  (not showing some path entries when tracing).
+ 
+ </dd>
+<dt><a href="firep4j/profile/GroovyProfile.html" title="Class in firep4j.profile"><b>GroovyProfile</b></a> - Class in <a href="./firep4j/profile/package-summary.html">firep4j.profile</a>
+</dt><dd> This class is the FireP4j profile class for Groovy implementations.
+ </dd>
+<dt><a href="firep4j/profile/GroovyProfile.html#GroovyProfile()" title="Constructor in GroovyProfile"><b>GroovyProfile</b>()</b></a> - Constructor in <a href="firep4j/profile/GroovyProfile.html">GroovyProfile</a>
+</dt><dd> This constructor initializes the path and trace filters.
+	 </dd>
 <dt><a href="firep4j/FireP4j.FireP4jLogLevel.html#GROUP_END" title="Enum Constant in FireP4j.FireP4jLogLevel"><b>GROUP_END</b></a> - Enum Constant in <a href="firep4j/FireP4j.FireP4jLogLevel.html">FireP4j.FireP4jLogLevel</a>
 </dt><dd> Indicator for the end of a group operation	
 		 </dd>
@@ -402,12 +451,24 @@ function windowTitle()
 
 <dl>
 
+<dt><a href="firep4j/profile/JavaProfile.html" title="Class in firep4j.profile"><b>JavaProfile</b></a> - Class in <a href="./firep4j/profile/package-summary.html">firep4j.profile</a>
+</dt><dd> This class is the FireP4j profile class for Java implementations.
+ </dd>
+<dt><a href="firep4j/profile/JavaProfile.html#JavaProfile()" title="Constructor in JavaProfile"><b>JavaProfile</b>()</b></a> - Constructor in <a href="firep4j/profile/JavaProfile.html">JavaProfile</a>
+</dt><dd> This constructor initializes the path and trace filters.
+	 </dd>
 <dt><a href="firep4j/FireP4j.html#jsonLock" title="Property in FireP4j"><b>jsonLock</b></a> - Property in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> Lock needed for JSON serialization
 	 </dd>
+<dt><a href="firep4j/tools/JSONUtils.html" title="Class in firep4j.tools"><b>JSONUtils</b></a> - Class in <a href="./firep4j/tools/package-summary.html">firep4j.tools</a>
+</dt><dd> This class is used for JSON serialization.
+ 
+ </dd>
 <dt><a href="firep4j/FireP4j.html#jsonUtils" title="Property in FireP4j"><b>jsonUtils</b></a> - Property in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> The JSON utility class instance
 	 </dd>
+<dt><a href="firep4j/tools/JSONUtils.html#JSONUtils()" title="Constructor in JSONUtils"><b>JSONUtils</b>()</b></a> - Constructor in <a href="firep4j/tools/JSONUtils.html">JSONUtils</a>
+</dt><dd></dd>
 <dt><a href="firep4j/Table.html#jsonUtils" title="Property in Table"><b>jsonUtils</b></a> - Property in <a href="firep4j/Table.html">Table</a>
 </dt><dd> JSON utility class instance
 	 </dd>
@@ -448,6 +509,9 @@ function windowTitle()
 
 <dl>
 
+<dt><a href="firep4j/tools/Versioner.html#mapVersionEntry(String)" title="Method in Versioner"><b>mapVersionEntry</b>(String)</b></a> - Method in <a href="firep4j/tools/Versioner.html">Versioner</a>
+</dt><dd> This method maps one version string entry (separated by dots) to an integer value.
+ </dd>
 <dt><a href="firep4j/FireP4j.html#maxDepth" title="Property in FireP4j"><b>maxDepth</b></a> - Property in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> Max output depth
 	 </dd>
@@ -490,6 +554,9 @@ function windowTitle()
 
 <dl>
 
+<dt><a href="firep4j/profile/FireP4jProfile.html#pathFilters" title="Property in FireP4jProfile"><b>pathFilters</b></a> - Property in <a href="firep4j/profile/FireP4jProfile.html">FireP4jProfile</a>
+</dt><dd> Path filters (not showing some object elements in the output)
+	 </dd>
 <dt><a href="firep4j/FireP4j.html#profile" title="Property in FireP4j"><b>profile</b></a> - Property in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> Current FireP4j profile
 	 </dd>
@@ -523,7 +590,11 @@ function windowTitle()
 </dt><dd> This method removes an object filter from the list of object filters.
  
  </dd>
-<dt><a href="firep4j/FireP4j.html#removeTraceFilter(Filter)" title="Method in FireP4j"><b>removeTraceFilter</b>(Filter)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
+<dt><a href="firep4j/tools/JSONUtils.html#removeObjectFilter(String, String)" title="Method in JSONUtils"><b>removeObjectFilter</b>(String, String)</b></a> - Method in <a href="firep4j/tools/JSONUtils.html">JSONUtils</a>
+</dt><dd> This method removes an existing object filter.
+ 
+ </dd>
+<dt><a href="firep4j/FireP4j.html#removeTraceFilter(firep4j.tools.Filter)" title="Method in FireP4j"><b>removeTraceFilter</b>(Filter)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This method removes a trace filter from the list of existing trace filters.
  
  </dd>
@@ -547,7 +618,11 @@ function windowTitle()
 
 <dl>
 
-<dt><a href="firep4j/Table.html#serialize(JSONUtils)" title="Method in Table"><b>serialize</b>(JSONUtils)</b></a> - Method in <a href="firep4j/Table.html">Table</a>
+<dt><a href="firep4j/tools/JSONUtils.html#serialize(Object)" title="Method in JSONUtils"><b>serialize</b>(Object)</b></a> - Method in <a href="firep4j/tools/JSONUtils.html">JSONUtils</a>
+</dt><dd> This method serializes the given object using JSON (and the FlexJSON library).
+ 
+ </dd>
+<dt><a href="firep4j/Table.html#serialize(firep4j.tools.JSONUtils)" title="Method in Table"><b>serialize</b>(JSONUtils)</b></a> - Method in <a href="firep4j/Table.html">Table</a>
 </dt><dd> This method serializes the table.
  
  </dd>
@@ -571,6 +646,10 @@ function windowTitle()
 </dt><dd> This method sets the maximum serialization depth for object serialization (-1 for infinite depth).
  
  </dd>
+<dt><a href="firep4j/tools/JSONUtils.html#setMaxDepth(int)" title="Method in JSONUtils"><b>setMaxDepth</b>(int)</b></a> - Method in <a href="firep4j/tools/JSONUtils.html">JSONUtils</a>
+</dt><dd> This method sets the max depth for JSON serialization (-1 for infinite depth).
+ 
+ </dd>
 <dt><a href="firep4j/FireP4j.html#setMaxTraceCount(int)" title="Method in FireP4j"><b>setMaxTraceCount</b>(int)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This method sets the maximum trace element count that is output in trace and exception outputs.
  
@@ -579,12 +658,17 @@ function windowTitle()
 </dt><dd> This method sets all the options that can be configured.
  
  </dd>
-<dt><a href="firep4j/FireP4j.html#setProfile(FireP4jProfile)" title="Method in FireP4j"><b>setProfile</b>(FireP4jProfile)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
+<dt><a href="firep4j/FireP4j.html#setProfile(firep4j.profile.FireP4jProfile)" title="Method in FireP4j"><b>setProfile</b>(FireP4jProfile)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This method sets the FireP4j profile that is used.
  
  </dd>
 <dt><a href="firep4j/FireP4j.html#setProfileSettings()" title="Method in FireP4j"><b>setProfileSettings</b>()</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> This method takes over profile settings from the given profile.
+	 </dd>
+<dt><a href="firep4j/tools/Versioner.html#standardizeVersion(String)" title="Method in Versioner"><b>standardizeVersion</b>(String)</b></a> - Method in <a href="firep4j/tools/Versioner.html">Versioner</a>
+</dt><dd> This method standardizes a version string.</dd>
+<dt><a href="firep4j/tools/Filter.Criteria.html#STARTS_WITH" title="Enum Constant in Filter.Criteria"><b>STARTS_WITH</b></a> - Enum Constant in <a href="firep4j/tools/Filter.Criteria.html">Filter.Criteria</a>
+</dt><dd> All possible filter criteria
 	 </dd>
 </dl>
 
@@ -621,6 +705,12 @@ function windowTitle()
 <dt><a href="firep4j/FireP4j.html#traceFilters" title="Property in FireP4j"><b>traceFilters</b></a> - Property in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> Filter criteria for trace and class name output
 	 </dd>
+<dt><a href="firep4j/profile/FireP4jProfile.html#traceFilters" title="Property in FireP4jProfile"><b>traceFilters</b></a> - Property in <a href="firep4j/profile/FireP4jProfile.html">FireP4jProfile</a>
+</dt><dd> Trace filters (not showing some path entries when tracing)
+	 </dd>
+<dt><a href="firep4j/tools/Filter.html#type" title="Property in Filter"><b>type</b></a> - Property in <a href="firep4j/tools/Filter.html">Filter</a>
+</dt><dd> The filter criterium type
+	 </dd>
 </dl>
 
     
@@ -655,12 +745,27 @@ function windowTitle()
 
 <dl>
 
+<dt><a href="firep4j/tools/Filter.html#value" title="Property in Filter"><b>value</b></a> - Property in <a href="firep4j/tools/Filter.html">Filter</a>
+</dt><dd> The filter value 
+	 </dd>
+<dt><a href="firep4j/tools/Filter.html#valueOf(String)" title="Method in Filter"><b>valueOf</b>(String)</b></a> - Method in <a href="firep4j/tools/Filter.html">Filter</a>
+</dt><dd>Returns the enum constant of this type with the specified name.</dd>
 <dt><a href="firep4j/FireP4j.html#valueOf(String)" title="Method in FireP4j"><b>valueOf</b>(String)</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd>Returns the enum constant of this type with the specified name.</dd>
+<dt><a href="firep4j/tools/Filter.html#values()" title="Method in Filter"><b>values</b>()</b></a> - Method in <a href="firep4j/tools/Filter.html">Filter</a>
+</dt><dd>Returns an array containing the constants of this enum type, in the order they are declared.</dd>
 <dt><a href="firep4j/FireP4j.html#values()" title="Method in FireP4j"><b>values</b>()</b></a> - Method in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd>Returns an array containing the constants of this enum type, in the order they are declared.</dd>
 <dt><a href="firep4j/FireP4j.html#version" title="Property in FireP4j"><b>version</b></a> - Property in <a href="firep4j/FireP4j.html">FireP4j</a>
 </dt><dd> FireBug console version that is supported
+	 </dd>
+<dt><a href="firep4j/tools/Versioner.html" title="Class in firep4j.tools"><b>Versioner</b></a> - Class in <a href="./firep4j/tools/package-summary.html">firep4j.tools</a>
+</dt><dd> This class provides static methods for comparing different version strings.
+ </dd>
+<dt><a href="firep4j/tools/Versioner.html#Versioner()" title="Constructor in Versioner"><b>Versioner</b>()</b></a> - Constructor in <a href="firep4j/tools/Versioner.html">Versioner</a>
+</dt><dd></dd>
+<dt><a href="firep4j/tools/JSONUtils.html#visitor" title="Property in JSONUtils"><b>visitor</b></a> - Property in <a href="firep4j/tools/JSONUtils.html">JSONUtils</a>
+</dt><dd> The visitor object for serializing using FlexJSON
 	 </dd>
 </dl>
 
