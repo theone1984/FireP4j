@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Copyright 2010 Thomas Endres
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+	
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.
+-->
+<!-- Ant Buildfile for generating the GroovyDoc documentation -->
+<project name="generate-groovydoc" basedir="..">
+	<!-- Base directories are set -->
+	<property name="src.dir" location="src" />
+	<property name="docs.dir" location="documentation" />
+	
+	<!-- GroovyDoc creation -->
+	<target name="groovydoc" description="groovydoc">
+		<!-- The old directory is deleted -->
+		<delete dir="${docs.dir}/api" />
+		
+		<!-- The GroovyDoc task is created -->
+		<taskdef name="groovydoc"
+				 classname="org.codehaus.groovy.ant.Groovydoc"
+				 classpath="lib/groovy-all-1.7.0.jar" />
+	
+		<!-- The GroovyDoc documents are created -->
+		<groovydoc
+		    destdir="${docs.dir}/api"
+		    sourcepath="${src.dir}"
+		    packagenames="firep4j*"
+		    use="true"
+		    windowtitle="FireP4j API documentation"
+		    doctitle="FireP4j API documentation"
+			
+		    header="Documentation"
+		    private="true">
+		        <link packages="java.,org.xml.,javax.,org.xml." href="http://java.sun.com/j2se/1.5.0/docs/api"/>
+		        <link packages="org.apache.ant.,org.apache.tools.ant." href="http://www.dpml.net/api/ant/1.7.0"/>
+		        <link packages="org.junit.,junit.framework." href="http://junit.sourceforge.net/junit3.8.1/javadoc/"/>
+		        <link packages="groovy.,org.codehaus.groovy." href="http://groovy.codehaus.org/api/"/>
+		</groovydoc>
+	</target>
+</project>

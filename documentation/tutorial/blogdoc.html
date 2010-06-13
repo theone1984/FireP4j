@@ -1,0 +1,413 @@
+<p>
+	FireP4j is a plugin for FirePHP. It was developed by Thomas Endres.<br />
+	FirePHP is an addon for FireBug. It was developed by Christian Dorn.
+</p>
+<p>
+	The FireP4j project is licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License.<br />
+	You may obtain a copy of the License at <a href = "http://www.apache.org/licenses/LICENSE-2.0" target = "_blank">http://www.apache.org/licenses/LICENSE-2.0</a><br />
+	Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br />
+	See the License for the specific language governing permissions and limitations under the License.
+</p>
+
+
+<p>Using FireP4j, one can easily log to the console without writing to the HTML output directly (where the log entry will probably be overseen) or to log files (easily reaching 10000 lines+).</p>
+<p>Some of the advantages of direct logging are:</p>
+<ul>
+	<li>You can directly see logged output within the browser window</li>
+	<li>The output doesn't mess up your HTML</li>
+	<li>The output isn't hidden in some log file deep within your folders</li>
+</ul>
+<p>FireP4j is a Groovy project. Automated test cases were written using JUnit 3.8. It is implemented in a thread safe way so you can use it from different threads.</p>
+
+<!-- Contents -->
+Contents:
+<ul>
+	<li><a href ="#prerequisites">Prerequisites</a></li>
+
+	<li><a href ="#install">Installing FireP4j</a></li>
+	<li><a href ="#testrun">First test run</a></li>
+	<li>
+    	<a href ="#usage">Using FireP4j</a>
+    	<ul>
+        	<li><a href ="#usageEnable">Enabling and disabling of FireP4j</a></li>
+        	<li><a href ="#usageLabels">Labels</a></li>
+        	<li><a href ="#usageLoglevels">Log levels</a></li>
+        	<li><a href ="#usageDump">Dumping variables</a></li>
+        	<li><a href ="#usageGroups">Logging groups</a></li>
+        	<li><a href ="#usageStructures">Logging larger data structures</a></li>
+        	<li><a href ="#usageTraces">Logging exceptions and tracing</a></li>
+        	<li><a href ="#usageExceptions">Exception and error handling</a></li>
+        	<li><a href ="#usageRestrictions">Defining serialization restrictions</a></li>            
+        </ul>
+	</li>
+	<li><a href ="#information">Additional information</a></li>
+	<li><a href ="#contribute">Contribute</a></li>
+</ul>
+
+<!-- Prerequisites -->
+<h2><a name="prerequisites">Prerequisites</a></h2>
+
+<p>In order to run FireP4j, the following prerequisites have to be fulfilled:</p>
+
+<ul>
+	<li>Server side:</li>
+	<ul>
+		<li>You have to use a servlet based Java web framework</li>
+		<li>Your application server must be up and running using this web framework</li>
+	</ul>
+	<li>Client side:</li>
+	<ul>
+		<li>You must have Firefox installed. Get it <a href="http://www.mozilla-europe.org/de/firefox/" target="_blank">here</a>.</li>
+		<li>You must have FireBug installed. Get it <a href="http://getfirebug.com/" target="_blank">here</a>.</li>
+		<li>You must have FirePHP installed. Get it <a href="http://www.firephp.org/" target="_blank">here</a>.</li>
+		<li>FireBug needs to be activated ("FireBug" menu point in menu "Extras")</li>
+		<li>Within FireBug, the console and net tabs need to be activated (if they are not, press the arrow near to the tab and choose "Activate")</li>
+	</ul>
+</ul>
+<p>If you've met all these prerequisites, we're ready to go!</p>
+
+<!-- Installing FireP4j -->
+<h2><a name="install">Installing FireP4j</a></h2>
+
+<p>
+	In order to use FireP4j, the FireP4j library needs to be on your classpath.<br />
+	The first thing to do is to get the JAR file from the git hub: <a href = "http://www.github.com/theone1984/FireP4j" target="_blank">http://www.github.com/theone1984/FireP4j</a><br />
+	All you have to do is to add it to your buildpath. In Eclipse, this is done the following way:
+</p>
+<ul>
+	<li>Put the JAR file somewhere in your project directory (usually lib/)</li>
+	<li>Right click your project</li>
+	<li>From the context menu, choose "Properties"</li>
+	<li>Within the opened menu, choose "Java Build Path"</li>
+	<li>Click "Add JARs..."</li>
+	<li>Choose the FireP4j JAR file and click "Next"</li>
+	<li>Click "OK"</li>
+</ul>
+<p>
+	<strong>When you are using FireP4j from a Java application, you also have to include the file "groovy-all-1.7.0.jar" into your classpath.<br/>
+	Be aware that the jar files have to be uploaded to the server. Using some frameworks, the libraries need to be in a path other than "lib". Consult the documentation of the framework you are using for further instructions.</strong>
+</p>
+
+<p>Now we can use FireP4j within our project!</p>
+
+<!-- First test run -->
+<h2><a name="testrun">First test run</a></h2>
+
+<p>For the first test run, you have to import some FireP4j classes into the class file where you want to use it.</p>
+[sourcecode language="java"]
+	import firep4j.FireP4j;
+	import firep4j.profile.*;
+[/sourcecode]
+
+<p>In order to run correctly, you habe to set a language profile.</p>
+[sourcecode language="java"]
+	FireP4j.setProfile(new JavaProfile());
+[/sourcecode]
+<p>If you're using Groovy &amp; Grails, please specify GroovyProfile instead of JavaProfile.</p>
+
+<p>Now you can try to get a FireP4j instance (as parameters, you need to pass the HttpServletRequest and HttpServletResponse objects).</p>
+[sourcecode language="java"]
+	FireP4j fireP4j = FireP4j.getInstance(request, response);
+[/sourcecode]
+
+<p>We got our FireP4j object, so now we'll log something to it.</p>
+[sourcecode language="java"]
+	fireP4j.log("Hello FirePHP");
+[/sourcecode]
+
+<p>Using basic servlets, our complete example would look like the following:</p>
+[sourcecode language="java"]
+	package foobar;
+
+	import javax.servlet.http.*;
+	import firep4j.FireP4j;
+	import firep4j.profile.*;
+
+	public class SomeServlet extends HttpServlet {
+		public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+			FireP4j.setProfile(new JavaProfile());
+			FireP4j fireP4j = FireP4j.getInstance(request, response);
+			fireP4j.log("Hello FirePHP");
+
+			PrintWriter out = response.getWriter();
+			// TODO write HTML to out
+		}
+	}
+[/sourcecode]
+
+<p>Using Grails, the example would look like:</p>
+[sourcecode language="java"]
+	package foobar
+
+	import firep4j.*
+	import firep4j.profile.*
+
+	class TestController {
+		def test = {
+			FireP4j.setProfile(new GroovyProfile())
+			def fireP4j = FireP4j.getInstance(request, response)
+			fireP4j.log("Hello FirePHP")
+
+			// TODO do something else
+		}
+	}
+[/sourcecode]
+
+<p>It's time to power up the application server and see what we get at the front end:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/firstexample11.png?w=440" alt="First example" />
+<p>If you hover over the ouput, you will also see the file name and line number where the output was invoked:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/firstexample21.png?w=440" alt="First example - file name" />
+<p>Now that we know how to do a simple example, let's dig into more sophisticated logging issues!</p>
+
+<!-- Using FireP4j -->
+<h2><a name="usage">Using FireP4j</a></h2>
+
+<h3><a name="usageEnable">Enabling and disabling of FireP4j</a></h3>
+
+<p>
+	Whenever you do not want to log to FireP4j, you can just call the method setEnabled().<br />
+	Passing 'false' to that method will disable FireP4j logging, passing 'true' to it will enable logging once again.<br />
+	The current status of FireP4j can be determined using getEnabled().
+</p>
+[sourcecode language="java"]
+	fireP4j.setEnabled(false);
+	fireP4j.getEnabled()		// Will result in 'false'
+
+	fireP4j.log("foobar1");	// Will not be logged
+
+	fireP4j.setEnabled(true);
+	fireP4j.getEnabled()		// Will result in 'true'
+
+	fireP4j.log("foobar2");	// Will be logged
+[/sourcecode]
+
+<h3><a name="usageLabels">Labels</a></h3>
+
+<p>Every log entry can have a label. The label is specified as a second parameter of the log method.</p>
+[sourcecode language="java"]
+	fireP4j.log("value", "label");
+[/sourcecode]
+<p>This will result in the following output:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/label1.png?w=440" alt="Using a label for the log entry" />
+
+<h3><a name="usageLoglevels">Log levels</a></h3>
+
+<p>There are four different log levels that can be directly output:</p>
+<ul>
+	<li>LOG: Logging to the console</li>
+	<li>INFO: Output that might be interesting for the viewer</li>
+	<li>WARN: Mainly used for signalling warnings</li>
+	<li>ERROR: Mainly used for signalling errors</li>
+</ul>
+<p>You can use the different log levels by calling different methods:</p>
+[sourcecode language="java"]
+	fireP4j.log("LOG");
+	fireP4j.info("INFO");
+	fireP4j.warn("WARN");
+	fireP4j.error("ERROR");
+[/sourcecode]
+<p>This will result in the following output:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/loglevels1.png?w=440" alt="Different log levels" />
+<p>Of course, all of these methods can also be called using a label argument.</p>
+
+<h3><a name="usageTables">Table output</a></h3>
+
+<p>When you want to output data as a table, you can use the table() method. As an input, it takes an object of type firep4j.Table and a label.</p>
+<p>You can create a table by constructing it and adding some headers and rows to it. Afterwards, you log the table to FireP4j:</p>
+
+[sourcecode language="java"]
+	Table table = new Table(2);				// The number indicates column count
+	table.setHeaders("title", "value");		// Table headers
+	table.addRow("title1", "value1");		// Table entries
+	table.addRow("title2", "value2");
+
+	fireP4j.table(table, "foobar");
+[/sourcecode]
+<p>This will result in the following output:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/tablelog1.png?w=440" alt="Table log" />
+
+
+<h3><a name="usageDump">Dumping variables</a></h3>
+
+<p>If you don't want to log to the FireBug console, but to the FireBug net tab, you can use the method dump(). It works just like the other logging methods except that the output is displayed differently.</p>
+[sourcecode language="java"]
+	fireP4j.dump("value", "label");
+[/sourcecode]
+
+<h3><a name="usageGroups">Logging groups</a></h3>
+
+<p>You can group mulitple log entries. This will result in a list of log entries that can be collapsed or opened.</p>
+<ul>
+	<li>group(): This method starts a new group</li>
+	<ul>
+		<li>As a first parameter, the group label is passed to this method</li>
+		<li>As a second (optional) parameter, the initial collapse state is passed (true for collapsed, false for opened). If not specified, the group is initially opened.</li>
+	</ul>
+	<li>endGroup(): This method ends the last openend group</li>
+</ul>
+[sourcecode language="java"]
+	fireP4j.group("group label");
+
+	fireP4j.log("entry 1");
+	fireP4j.info("entry 2");
+
+	fireP4j.endGroup();
+[/sourcecode]
+<p>This will result in the following output</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/group1.png?w=440" alt="Groups of log entries" />
+
+<p>Groups can be specified recursively, so you can also specify a group of groups:</p>
+[sourcecode language="java"]
+	fireP4j.group("main group");
+
+	fireP4j.group("sub group 1");
+		...
+	fireP4j.endGroup();
+	fireP4j.group("sub group 2");
+		...
+	fireP4j.endGroup();
+
+	fireP4j.endGroup();
+[/sourcecode]
+
+<h3><a name="usageStructures">Logging larger data structures</a></h3>
+
+<p>When logging an object or array, the output will be serialized as a JSON string. Complex structures can also be serialized as long as they implement the marker interface Serializable.</p>
+<p>Let's look at a Person object that consists of the person's first and last name and a referenced House object containing only the address:</p>
+[sourcecode language="java"]
+	House house = new House("123 Fake St.");
+	Person person = new Person("Bart", "Simpson", house);
+
+	fireP4j.log(person);
+[/sourcecode]
+<p>This will result in the following output:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/complexlog11.png?w=440" alt="Complex data logging" />
+<p>If you click the log entry, the following view will open:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/complexlog21.png?w=440" alt="Complex data logging" />
+<p>Within this view, you can collapse/open every property allowing you to look at the objects in detail.</p>
+
+<p>The dots in front of the names indicate property visibility:</p>
+<ul>
+	<li>Red dots mark private properties</li>
+	<li>Yellow dots mark protected properties</li>
+	<li>Green dots mark public properties</li>
+	<li>Circles are used for non-static properties</li>
+	<li>Squares are used for static properties</li>
+</ul>
+
+<p>You can also log arrays, HashMaps, or even arrays of HashMaps etc.:</p>
+[sourcecode language="java"]
+	// Define HashMap
+
+	fireP4j.log(hashMap);
+[/sourcecode]
+<img src="http://firejavalib.files.wordpress.com/2010/06/complexlogarray11.png?w=440" alt="HashMap serialization" />
+<p>When clicking on the log entry, you will see each entry of the HashMap in more detail:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/complexlogarray21.png?w=440" alt="HashMap serialization" />
+
+<h3><a name="usageTraces">Logging exceptions and tracing</a></h3>
+
+<p>Sometimes, you will want to know the stacktrace of an exception. This can be done by logging it:</p>
+[sourcecode language="java"]
+	Exception exception = new Exception("intentional exception");
+
+	fireP4j.log(exception);
+[/sourcecode]
+<p>This will result in the following output:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/exceptionlog1.png?w=440" alt="Exception logging" />
+<p>
+	Within the log entry, all stack trace elements are listed (with the exception of Java reflection or Groovy metaClass methods).<br />
+	If you specify a label parameter for the exception, it will be ignored.
+</p>
+
+<p>You can also trace the current line. The method trace() takes a neccessary label parameter that must not be empty.</p>
+[sourcecode language="java"]
+	 fireP4j.trace("current line");
+[/sourcecode]
+<p>The output of this method looks like the exception output shown before (label and icon are different, though). It shows the stack trace of the current line.</p>
+
+<h3><a name="usageExceptions">Exception and error handling</a></h3>
+
+<p><strong>The following features don't work in version 0.9!</strong></p>
+<p>When you want to log all uncaught exceptions (with a trace) in FireP4j (using the exception output), you can use the following methods:</p>
+<ul>
+	<li>registerExceptionHandler(thread): This method registers a handler catching all uncaught exceptions</li>
+	<li>registerErrorHandler(thread): This method registers a handler catching all uncaught errors</li>
+	<li>registerAssertionHandler(thread): This method registers a handler catching all uncaught assertion errors</li>
+</ul>
+<p>The methods require an argument 'thread' specifying the thread for which the handler is installed (all the handlers are defined per thread). If no thread is specified, the calling thread is used.</p>
+<p>Unregistering exception handlers works the same way:</p>
+<ul>
+	<li>unregisterExceptionHandler(thread): This method unregisters a handler catching all uncaught exceptions</li>
+	<li>unregisterErrorHandler(thread): This method unregisters a handler catching all uncaught errors</li>
+	<li>unregisterAssertionHandler(thread): This method unregisters a handler catching all uncaught assertion errors</li>
+</ul>
+<p>When exception handlers are installed, all uncaught exceptions are logged to FireP4j:</p>
+
+[sourcecode language="java"]
+	 fireP4j.registerExceptionHandler();
+
+	 if (exceptionNeeded) {
+		throw new Exception("intentional exception");
+	 }
+[/sourcecode]
+<p>If the exception is thrown and not caught, this will result in the following output:</p>
+<img src="http://firejavalib.files.wordpress.com/2010/06/exceptionlog1.png?w=440" alt="Exception logging" />
+
+<h3><a name="usageRestrictions">Defining serialization restrictions</a></h3>
+
+<p>
+	The last thing to do is to restrict the FireP4j output. Sometimes, you may not want to output every property of every object. For this purpose, you can define object filters.
+	Object filters take the class name (in package notation) and some field names as input. The corresponding fields in the class will not be displayed by FireP4j.
+</p>
+<ul>
+	<li>addObjectFilter("className", "fieldName1", "fieldName2", ...): This method filters "fieldName1", "fieldName2", ... of class "className" from the FireP4j output</li>
+	<li>removeObjectFilter("className", "fieldName1", "fieldName2", ...): This method removes the object filters set by the previous method</li>
+</ul>
+
+<p>You may also want to restrict serialization to some depth levels. This can be done by setting the maxDepth() property:</p>
+[sourcecode language="java"]
+	 fireP4j.setMaxDepth(2);
+[/sourcecode]
+<p>This will restrict the output to a maximum of two depth levels (the initial level plus one extra level). Every property that exceeds the max depth level will be output as string 'Max depth (2)'.</p>
+
+<p>You may also want to filter the trace output (if, for example, a helper class is always output as a trace element). For this purpose, you can define trace filters:</p>
+<ul>
+	<li>addTraceFilter(filterType, "className"): This method filters "className" from the trace output</li>
+	<li>removeTraceFilter(filterType, "className"): This method removes the trace filter set by the previous method</li>
+</ul>
+<p>There are four different filter types:</p>
+<ul>
+	<li>fireP4j.tools.Filter.FilterType.STARTS_WITH: The class will be filtered if the class name (in package notation) starts with "className"</li>
+	<li>fireP4j.tools.Filter.FilterType.CONTAINS: The class will be filtered if the class name (in package notation) contains "className"</li>
+	<li>fireP4j.tools.Filter.FilterType.ENDS_WITH: The class will be filtered if the class name (in package notation) ends with "className"</li>
+	<li>fireP4j.tools.Filter.FilterType.EQUALS: The class will be filtered if the class name (in package notation) equals "className"</li>
+</ul>
+<p>If you want to filter all classes that start with 'java.text' from the trace output, you may do the following:</p>
+[sourcecode language="java"]
+	 fireP4j.addTraceFilter(Filter.FilterType.STARTS_WITH, "java.text");
+[/sourcecode]
+<p>If you do this, no trace or exception output will contain a trace element of some class starting with "java.text".</p>
+
+<p>Finally, you may also want to restrict the stack trace length of trace and exception outputs. You can do this using the setMaxTraceCount() method:</p>
+[sourcecode language="java"]
+	 fireP4j.setMaxTraceCount(10);
+[/sourcecode]
+<p>This will restrict stack trace length to a maximum of ten stack trace elements. Further elements will be filtered.</p>
+
+<!-- Additional informations -->
+<h2><a name="information">Additional informations</a></h2>
+
+<p>
+	It is sensible to comment every FireP4j instruction before using the code in production, as FireP4j might output sensitive information to the FireBug console.<br />
+	The author of FireP4j DOES NOT take any responsibility for information that was output using this software.
+</p>
+<p>That's all there is to FireP4j. Have fun using it!</p>
+
+<!-- Contribute -->
+<h2><a name="contribute">Contribute</a></h2>
+
+<p>If you want to help me writing better software, tests are always welcome. If you encounter a bug, please let me know so I can fix it. You can also enhance the code by rewriting some passages or using it in some other library. Just make sure you don't violate the Apache license.</p>
+<p>Thanks for using my software.<br /></p>

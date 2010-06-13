@@ -1,0 +1,4 @@
+For version 1.0:
+- Build ant task for creating the JAR files
+- registerExceptionHandler() does not work
+- Tests for global handlers

@@ -1,0 +1,4 @@
+Version 0.9b:
+- Since this is the first version of FireP4j, there are no ChangeNotes.
+- Have a look at documentation/tutorial for an introductory tutorial.
+- Have a look at documentation/api for the API specification.
