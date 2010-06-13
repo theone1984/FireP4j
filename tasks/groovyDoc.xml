@@ -33,7 +33,7 @@ permissions and limitations under the License.
 		<groovydoc
 		    destdir="${docs.dir}/api"
 		    sourcepath="${src.dir}"
-		    packagenames="firep4j*"
+		    packagenames="firep4j.*"
 		    use="true"
 		    windowtitle="FireP4j API documentation"
 		    doctitle="FireP4j API documentation"
